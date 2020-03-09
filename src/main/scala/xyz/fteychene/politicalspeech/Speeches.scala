@@ -34,7 +34,7 @@ object SpeechesLines {
     "la volonté farouche de sortir notre pays de la crise" ::
     "l'effort prioritaire en faveur du statut précaire des exclus" ::
     "le particularisme dû à notre histoire unique" ::
-    "l'aspiration plus ue légitime de chacun au progrès social" ::
+    "l'aspiration plus que légitime de chacun au progrès social" ::
     "la nécessité de répondre à votre inquiétude journalière, que vous soyez jeune ou âgés," ::
     Nil
 
@@ -44,7 +44,7 @@ object SpeechesLines {
     "a pour conséquence obligatoire l'urgente nécessité" ::
     "conforte mon désir incontestable d'aller dans le sens" ::
     "doit nous amener au choxi réellement impératif" ::
-    "doit prendre en compte les préoccupations de la population de base dans l'élabiration" ::
+    "doit prendre en compte les préoccupations de la population de base dans l'élaboration" ::
     "entraîne une mission somme toute des plus exaltantes pour moi : l'élaboration" ::
     Nil
 
@@ -87,7 +87,7 @@ object Speeches {
       seq(random.nextInt(seq.length))
 
 
-    def generateSpeech(): String = texts.map(getRandomElement).mkString(" ")
+    def generateSpeech(): String = texts.tail.map(Random.shuffle(_)).foldLeft(texts.head){ (acc, e) => acc.zip(e).map(el => el._1+ " "+ el._2) }.mkString(". ")
 
     def get: F[Speeches.Speech] =
       Speech(generateSpeech()).pure[F]

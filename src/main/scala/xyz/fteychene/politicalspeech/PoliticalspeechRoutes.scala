@@ -2,7 +2,7 @@ package xyz.fteychene.politicalspeech
 
 import cats.effect.Sync
 import cats.implicits._
-import org.http4s.HttpRoutes
+import org.http4s.{Header, HttpRoutes}
 import org.http4s.dsl.Http4sDsl
 
 object PoliticalspeechRoutes {
@@ -26,7 +26,7 @@ object PoliticalspeechRoutes {
       case GET -> Root =>
         for {
           speech <- S.get()
-          resp <- Ok(speech)
+          resp <- Ok(speech, Header("Content-Type", "application/json; charset=UTF-8"))
         } yield resp
     }
   }
